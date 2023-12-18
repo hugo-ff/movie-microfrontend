@@ -7,15 +7,16 @@ const breakpoints = {
 };
 
 const colors = {
-  primary: '#007bff',
-  secondary: '#6c757d',
-  success: '#28a745',
-  danger: '#dc3545',
-  warning: '#ffc107',
-  info: '#17a2b8',
-  light: '#f8f9fa',
-  lightGray: '#d1d5db',
-  dark: '#343a40',
+  primary: '#4B4A60',
+  secondary: '#A4978E',
+  success: '#689775',
+  danger: '#9B6A6C',
+  warning: '#CABD80',
+  info: '#6C8A82',
+  light: '#F4F3EE',
+  lightGray: '#D3CFC8',
+  white: '#FFFFFF',
+  dark: '#2F2D35',
 };
 
 const typography = {

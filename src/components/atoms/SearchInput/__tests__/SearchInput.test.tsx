@@ -1,6 +1,6 @@
-import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
+import { render, screen } from '../../../../tests/test-utils';
 import { SearchInput } from '../SearchInput';
 
 describe('SearchInput', () => {

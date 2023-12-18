@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import type { CharactersRepository } from '../../../features/movie-characters-list/application/characters-repository';
 import type { Movie as MovieInterface } from '../../../features/movie-characters-list/domain/movie';
 import { SearchInput } from '../../atoms/SearchInput';
+import { CharacterCard } from '../../molecules/CharacterCard/CharacterCard';
 import { CHARACTERS_PER_PAGE } from './constants';
 import { useCharactersRepository } from './hooks/useCharactersRepository';
 
@@ -48,9 +49,9 @@ export const Movie: React.FC<MovieProps> = ({ movie, charactersRepository }) => 
       {filteredCharacters.length === 0 ? (
         <div>No characters found</div>
       ) : (
-        <ul>
+        <ul style={{ listStyle: 'none', margin: 0, padding: 0 }}>
           {filteredCharacters.map((character) => (
-            <li key={character.id}>{character.name}</li>
+            <CharacterCard key={character.id} character={character} />
           ))}
         </ul>
       )}
