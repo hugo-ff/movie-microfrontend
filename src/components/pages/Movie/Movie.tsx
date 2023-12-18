@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 import type { CharactersRepository } from '../../../features/movie-characters-list/application/characters-repository';
 import type { Movie as MovieInterface } from '../../../features/movie-characters-list/domain/movie';
+import { SearchInput } from '../../atoms/SearchInput';
 import { CHARACTERS_PER_PAGE } from './constants';
 import { useCharactersRepository } from './hooks/useCharactersRepository';
 
@@ -42,13 +43,7 @@ export const Movie: React.FC<MovieProps> = ({ movie, charactersRepository }) => 
 
   return (
     <>
-      <input
-        type="search"
-        placeholder="Search characters..."
-        value={searchTerm}
-        role="searchbox"
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <SearchInput onSearch={setSearchTerm} placeholder="Search characters..." />
       <h1>{movie.title}</h1>
       {filteredCharacters.length === 0 ? (
         <div>No characters found</div>
