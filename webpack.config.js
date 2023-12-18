@@ -43,7 +43,7 @@ module.exports = {
       name: 'movieMicrofrontend',
       filename: 'movie.js',
       exposes: {
-        './MovieComponent': './src/index.tsx',
+        './Movie': './src/index.tsx',
       },
       shared: {
         ...dependencies,

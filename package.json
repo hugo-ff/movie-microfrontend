@@ -1,7 +1,6 @@
 {
   "name": "movie-microfrontend",
   "version": "1.0.0",
-  "main": "index.tsx",
   "repository": "git@github.com:hugo-ff/movie-microfrontend.git",
   "author": "Hugo Flotts <hugoflotts@outlook.com>",
   "license": "MIT",
