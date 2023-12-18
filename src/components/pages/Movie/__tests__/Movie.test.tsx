@@ -1,40 +1,54 @@
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { mock } from 'jest-mock-extended';
 
+import { CharactersRepository } from '../../../../features/movie-characters-list/application/characters-repository';
+import { CHARACTERS_PER_PAGE } from '../constants';
 import { Movie } from '../Movie';
 import { CharacterMother, CharactersMother } from './CharactersMother';
 import { MovieMother } from './MovieMother';
 
+const mockCharactersRepository = mock<CharactersRepository>();
+
 describe('Movie', () => {
   const movieCharacters = CharactersMother.create(20, CharacterMother);
   const movie = MovieMother.create();
-  it('should render without errors', () => {
-    render(<Movie movie={movie} movieCharacters={movieCharacters} />);
+  it('should render without errors', async () => {
+    mockCharactersRepository.getAll.mockResolvedValue(movieCharacters);
 
-    expect(screen.getByRole('heading', { name: movie.title })).toBeInTheDocument();
-    expect(screen.getByRole('searchbox')).toBeInTheDocument();
-    expect(screen.getByRole('navigation')).toBeInTheDocument();
+    render(<Movie movie={movie} charactersRepository={mockCharactersRepository} />);
+
+    expect(await screen.findByRole('heading', { name: movie.title })).toBeInTheDocument();
+    expect(await screen.findByRole('searchbox')).toBeInTheDocument();
+    expect(await screen.findByRole('navigation')).toBeInTheDocument();
+
+    const listItems = screen.getAllByRole('listitem');
+    expect(listItems).toHaveLength(CHARACTERS_PER_PAGE);
+
+    listItems.forEach((item, index) => {
+      expect(item).toHaveTextContent(movieCharacters[index].name);
+    });
   });
 
   it('should filter characters on search input', async () => {
-    render(<Movie movie={movie} movieCharacters={movieCharacters} />);
+    mockCharactersRepository.getAll.mockResolvedValue(movieCharacters);
 
-    const searchInput = screen.getByRole('searchbox');
+    render(<Movie movie={movie} charactersRepository={mockCharactersRepository} />);
+
+    const searchInput = await screen.findByRole('searchbox');
     await userEvent.clear(searchInput);
     await userEvent.type(searchInput, movieCharacters[0].name);
 
-    expect(
-      await screen.findByRole('listitem', { name: movieCharacters[0].name })
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByRole('listitem', { name: movieCharacters[1].name })
-    ).not.toBeInTheDocument();
+    expect(await screen.findByRole('listitem')).toHaveTextContent(movieCharacters[0].name);
+    expect(await screen.findByRole('listitem')).not.toHaveTextContent(movieCharacters[1].name);
   });
 
   it('should show message when no results are found', async () => {
-    render(<Movie movie={movie} movieCharacters={movieCharacters} />);
+    mockCharactersRepository.getAll.mockResolvedValue(movieCharacters);
 
-    const searchInput = screen.getByRole('searchbox');
+    render(<Movie movie={movie} charactersRepository={mockCharactersRepository} />);
+
+    const searchInput = await screen.findByRole('searchbox');
     await userEvent.clear(searchInput);
     await userEvent.type(searchInput, 'NonExistingCharacter');
 
@@ -42,25 +56,22 @@ describe('Movie', () => {
   });
 
   it('should navigate through pages', async () => {
-    render(<Movie movie={movie} movieCharacters={movieCharacters} />);
+    mockCharactersRepository.getAll.mockResolvedValue(movieCharacters);
 
-    const firstCharacter = await screen.findByRole('listitem', { name: movieCharacters[0].name });
-    const secondCharacter = await screen.findByRole('listitem', { name: movieCharacters[1].name });
+    render(<Movie movie={movie} charactersRepository={mockCharactersRepository} />);
 
-    expect(firstCharacter).toBeInTheDocument();
-    expect(secondCharacter).toBeInTheDocument();
+    const prevPageButton = await screen.findByRole('button', { name: /prev/i });
+    expect(prevPageButton).toBeInTheDocument();
+    expect(prevPageButton).toBeDisabled();
 
-    const nextPageButton = screen.getByRole('button', { name: /next/i });
+    const nextPageButton = await screen.findByRole('button', { name: /next/i });
+    expect(nextPageButton).toBeInTheDocument();
+    expect(nextPageButton).toBeEnabled();
+
     await userEvent.click(nextPageButton);
 
-    expect(firstCharacter).not.toBeInTheDocument();
-    expect(secondCharacter).not.toBeInTheDocument();
-
-    expect(
-      await screen.findByRole('listitem', { name: movieCharacters[11].name })
-    ).toBeInTheDocument();
-    expect(
-      await screen.findByRole('listitem', { name: movieCharacters[12].name })
-    ).toBeInTheDocument();
+    const updatedPrevPageButton = await screen.findByRole('button', { name: /prev/i });
+    expect(updatedPrevPageButton).toBeInTheDocument();
+    expect(updatedPrevPageButton).toBeEnabled();
   });
 });

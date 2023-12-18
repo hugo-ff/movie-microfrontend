@@ -6,7 +6,7 @@ const { dependencies } = require('./package.json');
 
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, 'src/index.tsx'),
+  entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'movie-microfrontend.js',
@@ -18,7 +18,7 @@ module.exports = {
     },
     hot: true,
     open: true,
-    port: '3000',
+    port: '3001',
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -43,7 +43,7 @@ module.exports = {
       name: 'movieMicrofrontend',
       filename: 'movie.js',
       exposes: {
-        './Movie': './src/index.tsx',
+        './Movie': './src/components/pages/Movie',
       },
       shared: {
         ...dependencies,
