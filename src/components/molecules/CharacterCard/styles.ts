@@ -1,9 +1,10 @@
 import styled from 'styled-components';
 
-const CharacterCardMain = styled.li`
+const CharacterCard = styled.li`
   list-style-type: none;
   outline: none;
   cursor: pointer;
+  margin-bottom: 1.5rem;
 
   .character-card {
     position: relative;
@@ -12,12 +13,11 @@ const CharacterCardMain = styled.li`
     flex-direction: column;
     overflow: hidden;
 
-    margin: ${(props) => props.theme.spacing.sm};
     padding: ${(props) => props.theme.spacing.lg};
 
     border-radius: ${(props) => props.theme.border.radiusLarge};
     background-color: ${(props) => props.theme.colors.light};
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 8px rgba(0, 0, 0, 0.3);
     transition:
       transform 0.3s ease-in-out,
       box-shadow 0.3s ease-in-out;
@@ -51,7 +51,7 @@ const CharacterCardMain = styled.li`
     &::after {
       content: '';
       position: absolute;
-      background: ${(props) => props.theme.colors.secondary};
+      background: ${(props) => props.theme.colors.light};
       transition: all 0.3s ease-in-out;
     }
 
@@ -81,7 +81,7 @@ const CharacterCardMain = styled.li`
         box-shadow 0.3s ease;
 
       border: 1px solid ${(props) => props.theme.colors.lightGray};
-      border-radius: ${(props) => props.theme.border.radiusSmall};
+      border-radius: ${(props) => props.theme.border.radiusLarge};
     }
 
     &__name {
@@ -111,4 +111,4 @@ const CharacterCardMain = styled.li`
   }
 `;
 
-export default { CharacterCardMain };
+export default { CharacterCard };

@@ -1,10 +1,10 @@
 import styled, { css, DefaultTheme } from 'styled-components';
 
 const primaryStyles = (theme: DefaultTheme) => css`
-  background-color: ${theme.colors.dark};
-  color: ${theme.colors.white};
+  background-color: ${theme.colors.lightGray};
+  color: ${theme.colors.dark};
   &:hover {
-    background-color: ${theme.colors.primary};
+    background-color: ${theme.colors.light};
   }
 `;
 
@@ -22,7 +22,7 @@ const Button = styled.button<{ variant: 'primary' | 'secondary' }>`
   justify-content: center;
   align-items: center;
   padding: ${(props) => props.theme.spacing.sm} ${(props) => props.theme.spacing.md};
-  border-radius: ${(props) => props.theme.border.radiusSmall};
+  border-radius: ${(props) => props.theme.border.radiusMedium};
   border: ${(props) => props.theme.border.widthThick} solid transparent;
   cursor: pointer;
   transition:
@@ -32,7 +32,7 @@ const Button = styled.button<{ variant: 'primary' | 'secondary' }>`
     variant === 'primary' ? primaryStyles(theme) : secondaryStyles(theme)};
   &:disabled {
     cursor: not-allowed;
-    opacity: 0.5;
+    opacity: 0.3;
   }
 `;
 

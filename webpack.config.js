@@ -30,6 +30,14 @@ module.exports = {
         use: 'ts-loader',
         exclude: /node_modules/,
       },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        use: [
+          {
+            loader: 'file-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -43,14 +51,13 @@ module.exports = {
       name: 'movieMicrofrontend',
       filename: 'movie.js',
       exposes: {
-        './Movie': './src/components/pages/Movie',
+        './Movie': './src/components/pages/Movie/Movie.tsx',
       },
       shared: {
         ...dependencies,
-        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
+        react: { singleton: true, requiredVersion: dependencies.react },
         'react-dom': {
           singleton: true,
-          eager: true,
           requiredVersion: dependencies['react-dom'],
         },
       },

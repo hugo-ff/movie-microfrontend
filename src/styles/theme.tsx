@@ -15,6 +15,7 @@ const colors = {
   info: '#6C8A82',
   light: '#F4F3EE',
   lightGray: '#D3CFC8',
+  darkGray: '#3B3940',
   white: '#FFFFFF',
   dark: '#2F2D35',
 };

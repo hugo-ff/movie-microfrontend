@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import type { Character } from '../../../../features/movie-characters-list/domain/character';
+import type { Character } from '../features/movie-characters-list/domain/character';
 
 export class CharacterMother {
   static create(params?: Partial<Character>): Character {

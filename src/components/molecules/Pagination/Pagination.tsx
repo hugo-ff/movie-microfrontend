@@ -18,13 +18,13 @@ export const Pagination: React.FC<PaginationProps> = ({
 }) => {
   return (
     <styled.Pagination>
-      <Button onClick={goToPreviousPage} disabled={currentPage === 1} variant="secondary">
+      <Button onClick={goToPreviousPage} disabled={currentPage === 1} variant="primary">
         Prev
       </Button>
       <span className="pagination__info">
         Page {currentPage} of {totalPages}
       </span>
-      <Button onClick={goToNextPage} disabled={currentPage === totalPages} variant="secondary">
+      <Button onClick={goToNextPage} disabled={currentPage === totalPages} variant="primary">
         Next
       </Button>
     </styled.Pagination>

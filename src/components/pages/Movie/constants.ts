@@ -1,1 +1,1 @@
-export const CHARACTERS_PER_PAGE = 10;
+export const CHARACTERS_PER_PAGE = 12;

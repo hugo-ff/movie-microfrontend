@@ -30,7 +30,7 @@ describe('Button', () => {
 
     const button = screen.getByRole('button', { name: 'Primary Button' });
 
-    expect(button).toHaveStyle(`background-color: ${theme.colors.primary}`);
+    expect(button).toHaveStyle(`background-color: ${theme.colors.light}`);
   });
 
   it('should render Button with secondary variant', () => {

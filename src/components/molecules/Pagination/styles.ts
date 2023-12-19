@@ -28,6 +28,7 @@ export const Pagination = styled.nav`
   }
 
   .pagination__info {
+    color: ${(props) => props.theme.colors.lightGray};
     font-size: ${(props) => props.theme.typography.fontSizeBase};
   }
 `;
