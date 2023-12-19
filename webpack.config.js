@@ -47,20 +47,20 @@ module.exports = {
     new DefinePlugin({
       'process.env': JSON.stringify(process.env),
     }),
-    new ModuleFederationPlugin({
-      name: 'movieMicrofrontend',
-      filename: 'movie.js',
-      exposes: {
-        './Movie': './src/components/pages/Movie/Movie.tsx',
-      },
-      shared: {
-        ...dependencies,
-        react: { singleton: true, requiredVersion: dependencies.react },
-        'react-dom': {
-          singleton: true,
-          requiredVersion: dependencies['react-dom'],
-        },
-      },
-    }),
+    // new ModuleFederationPlugin({
+    //   name: 'movieMicrofrontend',
+    //   filename: 'movie.js',
+    //   exposes: {
+    //     './Movie': './src/components/pages/Movie/Movie.tsx',
+    //   },
+    //   shared: {
+    //     ...dependencies,
+    //     react: { singleton: true, requiredVersion: dependencies.react },
+    //     'react-dom': {
+    //       singleton: true,
+    //       requiredVersion: dependencies['react-dom'],
+    //     },
+    //   },
+    // }),
   ],
 };

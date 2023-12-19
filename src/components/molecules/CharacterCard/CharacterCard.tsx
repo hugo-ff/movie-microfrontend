@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import { Character } from '../../../features/movie-characters-list/domain/character';
 import { PLACEHOLDER_IMAGE_URL } from './constants';
 import styled from './styles';
@@ -7,6 +9,8 @@ interface CharacterCardProps {
 }
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
+  const { t } = useTranslation();
+
   const { actor, imageUrl, location, name, skill } = character;
 
   const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
@@ -28,19 +32,19 @@ export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
           <ul className="character-card__attributes">
             {location && (
               <li className="character-card__attribute">
-                <span>Casa: </span>
+                <span>{t('HOUSE')}</span>
                 {location}
               </li>
             )}
             {skill && (
               <li className="character-card__attribute">
-                <span>Patronus: </span>
+                <span>{t('PATRONUS')}</span>
                 {skill}
               </li>
             )}
             {actor && (
               <li className="character-card__attribute">
-                <span>Actor: </span>
+                <span>{t('ACTOR')}</span>
                 {actor}
               </li>
             )}

@@ -9,10 +9,10 @@ const CharactersList = styled.section`
       margin-bottom: 4.5rem;
     }
 
-    &__no-characters-found {
+    &__no-results-found {
       font-size: ${(props) => props.theme.typography.fontSizeBase};
       font-weight: ${(props) => props.theme.typography.fontWeightLight};
-      color: ${(props) => props.theme.colors.lightGray};
+      color: ${(props) => props.theme.colors.light};
     }
 
     &__list {

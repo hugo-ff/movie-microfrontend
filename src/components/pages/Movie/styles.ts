@@ -9,6 +9,12 @@ const Movie = styled.section`
     &__logo {
       display: flex;
       justify-content: center;
+
+      img {
+        max-width: 100%;
+        width: auto;
+        height: auto;
+      }
     }
 
     &__title {

@@ -1,3 +1,5 @@
+import { useTranslation } from 'react-i18next';
+
 import logoPng from '../../../assets/logo.png';
 import type { CharactersRepository } from '../../../features/movie-characters-list/application/characters-repository';
 import type { Movie as MovieInterface } from '../../../features/movie-characters-list/domain/movie';
@@ -13,10 +15,11 @@ interface MovieProps {
 }
 
 export const Movie: React.FC<MovieProps> = ({ movie, charactersRepository }) => {
+  const { t } = useTranslation();
   const { charactersData, isLoadingCharacters } = useCharactersRepository(charactersRepository);
 
   if (isLoadingCharacters) {
-    return <Spinner />;
+    return <Spinner loadingText={t('LOADING_TEXT')} />;
   }
 
   // ts-ignore for logoPng "any" type error

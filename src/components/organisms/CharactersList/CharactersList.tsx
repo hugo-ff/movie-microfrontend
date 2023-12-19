@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 import { Character } from '../../../features/movie-characters-list/domain/character';
 import { SearchInput } from '../../atoms/SearchInput';
@@ -15,6 +16,8 @@ export const CharactersList: React.FC<CharactersListProps> = ({
   charactersData,
   charactersPerPage,
 }) => {
+  const { t } = useTranslation();
+
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCharacters, setFilteredCharacters] = useState(charactersData);
 
@@ -45,10 +48,10 @@ export const CharactersList: React.FC<CharactersListProps> = ({
 
   return (
     <styled.CharactersList>
-      <SearchInput onSearch={setSearchTerm} placeholder="Search your favorite character..." />
+      <SearchInput onSearch={setSearchTerm} placeholder={t('SEARCH_INPUT_PLACEHOLDER')} />
       <div className="characters-list__results">
         {filteredCharacters.length === 0 ? (
-          <div className="characters-list__no-characters-found">No characters found.</div>
+          <div className="characters-list__no-results-found">{t('NO_RESULTS_FOUND')}</div>
         ) : (
           <ul className="characters-list__list">{characters}</ul>
         )}

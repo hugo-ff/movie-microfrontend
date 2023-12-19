@@ -52,7 +52,7 @@ describe('Movie', () => {
     await userEvent.clear(searchInput);
     await userEvent.type(searchInput, 'NonExistingCharacter');
 
-    expect(screen.getByText(/no characters found/i)).toBeInTheDocument();
+    expect(screen.getByText(/no results found/i)).toBeInTheDocument();
   });
 
   it('should navigate through pages', async () => {

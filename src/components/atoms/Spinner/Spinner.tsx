@@ -1,6 +1,10 @@
 import styled from './styles';
 
-export const Spinner = () => (
+interface SpinnerProps {
+  loadingText?: string;
+}
+
+export const Spinner: React.FC<SpinnerProps> = ({ loadingText = 'Loading...' }) => (
   <styled.Spinner>
     <div className="spinner" role="status">
       <svg
@@ -19,7 +23,7 @@ export const Spinner = () => (
           fill="currentFill"
         />
       </svg>
-      <span className="spinner__text">Loading...</span>
+      <span className="spinner__text">{loadingText}</span>
     </div>
   </styled.Spinner>
 );
