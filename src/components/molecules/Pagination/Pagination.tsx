@@ -1,6 +1,6 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 
+import { useMovieTranslation } from '../../../hooks/useMovieTranslation';
 import { Button } from '../../atoms/Button';
 import styled from './styles';
 
@@ -17,7 +17,7 @@ export const Pagination: React.FC<PaginationProps> = ({
   goToPreviousPage,
   goToNextPage,
 }) => {
-  const { t } = useTranslation();
+  const t = useMovieTranslation();
 
   return (
     <styled.Pagination>

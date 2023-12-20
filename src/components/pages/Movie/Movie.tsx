@@ -1,8 +1,7 @@
-import { useTranslation } from 'react-i18next';
-
 import logoPng from '../../../assets/logo.png';
 import type { CharactersRepository } from '../../../features/movie-characters-list/application/characters-repository';
 import type { Movie as MovieInterface } from '../../../features/movie-characters-list/domain/movie';
+import { useMovieTranslation } from '../../../hooks/useMovieTranslation';
 import { Spinner } from '../../atoms/Spinner';
 import { CharactersList } from '../../organisms/CharactersList';
 import { CHARACTERS_PER_PAGE } from './constants';
@@ -15,7 +14,7 @@ interface MovieProps {
 }
 
 export const Movie: React.FC<MovieProps> = ({ movie, charactersRepository }) => {
-  const { t } = useTranslation();
+  const t = useMovieTranslation();
   const { charactersData, isLoadingCharacters } = useCharactersRepository(charactersRepository);
 
   if (isLoadingCharacters) {

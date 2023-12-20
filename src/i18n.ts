@@ -1,11 +1,11 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-import { localeEn, localeEs } from './locales';
+import locales from './locales';
 
 const resources = {
-  en: { translation: localeEn },
-  es: { translation: localeEs },
+  en: { translation: locales.en },
+  es: { translation: locales.es },
 };
 
 const appInstance = i18n.createInstance();

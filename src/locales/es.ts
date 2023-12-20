@@ -1,6 +1,4 @@
-import { Translations } from './en';
-
-export const es: Translations = {
+export const es = {
   HOUSE: 'Casa: ',
   PATRONUS: 'Patronus: ',
   ACTOR: 'Actor: ',

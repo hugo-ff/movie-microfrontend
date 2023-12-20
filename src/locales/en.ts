@@ -9,5 +9,3 @@ export const en = {
   LOADING_TEXT: 'Loading...',
   SEARCH_INPUT_PLACEHOLDER: 'Search your favorite character',
 };
-
-export type Translations = Record<keyof typeof en, string>;

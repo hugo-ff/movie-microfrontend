@@ -1,6 +1,5 @@
-import { useTranslation } from 'react-i18next';
-
 import { Character } from '../../../features/movie-characters-list/domain/character';
+import { useMovieTranslation } from '../../../hooks/useMovieTranslation';
 import { PLACEHOLDER_IMAGE_URL } from './constants';
 import styled from './styles';
 
@@ -9,7 +8,7 @@ interface CharacterCardProps {
 }
 
 export const CharacterCard: React.FC<CharacterCardProps> = ({ character }) => {
-  const { t } = useTranslation();
+  const t = useMovieTranslation();
 
   const { actor, imageUrl, location, name, skill } = character;
 

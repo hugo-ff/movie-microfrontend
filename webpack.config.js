@@ -5,7 +5,10 @@ const { ModuleFederationPlugin } = require('webpack').container;
 const { dependencies } = require('./package.json');
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
+  performance: {
+    hints: false,
+  },
   entry: path.resolve(__dirname, 'src/index.ts'),
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -13,12 +16,12 @@ module.exports = {
   },
   devtool: 'inline-source-map',
   devServer: {
-    static: {
-      directory: path.join(__dirname, 'dist'),
-    },
-    hot: true,
-    open: true,
-    port: '3001',
+    // static: {
+    //   directory: path.join(__dirname, 'dist'),
+    // },
+    // hot: true,
+    // open: true,
+    port: 3001,
   },
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
@@ -51,13 +54,15 @@ module.exports = {
       name: 'movieMicrofrontend',
       filename: 'movie.js',
       exposes: {
-        './Movie': './src/components/pages/Movie/Movie.tsx',
+        './Movie': './src/App.tsx',
+        './hooks/useSwitchMovieMFELanguage': './src/hooks/useSwitchLanguage',
       },
       shared: {
         ...dependencies,
-        react: { singleton: true, requiredVersion: dependencies.react },
+        react: { singleton: true, eager: true, requiredVersion: dependencies.react },
         'react-dom': {
           singleton: true,
+          eager: true,
           requiredVersion: dependencies['react-dom'],
         },
       },
